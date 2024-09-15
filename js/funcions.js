@@ -1,3 +1,3 @@
-function confirmaRegistre(){
+async function carregaMencions(){
     //completa
 }
