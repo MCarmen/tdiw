@@ -22,8 +22,8 @@ docker run -d --name p4-php --network="host" -v "$PWD":/var/www/html apache-php-
 #Create PostgreSQL DB Docker
 docker run --name p4-db -p 5432:5432 -e POSTGRES_USER=david -e POSTGRES_DB=myDB -e POSTGRES_PASSWORD=password -d postgres
 
-#Wait ten seconds for DB to be ready
-sleep 10
+#Wait 5 seconds for DB to be ready
+sleep 5
 
 export PGPASSWORD=password
 
@@ -34,7 +34,7 @@ EOSQL
 
 #Create mencions table
 psql -v ON_ERROR_STOP=1 -U david -h localhost -w myDB <<-EOSQL
-        CREATE TABLE mencions (id SERIAL varchar(1), nom VARCHAR (50) UNIQUE NOT NULL, grau INT);
+        CREATE TABLE mencions (id varchar(1), nom VARCHAR (50) UNIQUE NOT NULL, grau INT);
 EOSQL
 
 #Insert graus
