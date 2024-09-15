@@ -23,27 +23,24 @@ sleep 10
 export PGPASSWORD=password
 
 psql -v ON_ERROR_STOP=1 -U david -h localhost -w myDB <<-EOSQL
-	CREATE TABLE graus (id SERIAL PRIMARY KEY, nom VARCHAR (50) UNIQUE NOT NULL); 
+	CREATE TABLE graus (id varchar(1), nom VARCHAR (50) UNIQUE NOT NULL); 
 EOSQL
 
 psql -v ON_ERROR_STOP=1 -U david -h localhost -w myDB <<-EOSQL
-        CREATE TABLE mencions (id SERIAL PRIMARY KEY, nom VARCHAR (50) UNIQUE NOT NULL, grau INT);
+        CREATE TABLE mencions (id SERIAL varchar(1), nom VARCHAR (50) UNIQUE NOT NULL, grau INT);
 EOSQL
 
 #Insert graus
 psql -v ON_ERROR_STOP=1 -U david -h localhost -w myDB <<-EOSQL
-	INSERT INTO graus (id, nom) VALUES (1, 'gradoA');
-	INSERT INTO graus (id, nom) VALUES (2, 'gradoB');
-	INSERT INTO graus (id, nom) VALUES (3, 'gradoC');
-	INSERT INTO graus (id, nom) VALUES (4, 'gradoD');
+	INSERT INTO graus (id, nom) VALUES ('I', 'Enginyeria Informàtica');
+	INSERT INTO graus (id, nom) VALUES ('T', 'Enginyeria de Sistemes de Telecomunicació');
+	INSERT INTO graus (id, nom) VALUES ('E', 'Enginyeria Electrònica de Telecomunicació');
+	INSERT INTO graus (id, nom) VALUES ('Q', 'Enginyeria Química');
 EOSQL
 
 psql -v ON_ERROR_STOP=1 -U david -h localhost -w myDB <<-EOSQL
-        INSERT INTO mencions (id, nom, grau) VALUES (1, 'mencioA1', 1);
-        INSERT INTO mencions (id, nom, grau) VALUES (2, 'mencioB1', 2);
-        INSERT INTO mencions (id, nom, grau) VALUES (3, 'mencioC1', 3);
-        INSERT INTO mencions (id, nom, grau) VALUES (4, 'mencioD1', 4);
-        INSERT INTO mencions (id, nom, grau) VALUES (5, 'mencioB2', 2);
-        INSERT INTO mencions (id, nom, grau) VALUES (6, 'mencioC2', 3);
-        INSERT INTO mencions (id, nom, grau) VALUES (7, 'mencioD2', 4);
+        INSERT INTO mencions (id, nom, grau) VALUES ('S', 'Enginyeria del software', 1);
+        INSERT INTO mencions (id, nom, grau) VALUES ('A', 'Enginyeria de computadors', 1);
+        INSERT INTO mencions (id, nom, grau) VALUES ('C', 'Computació', 1);
+        INSERT INTO mencions (id, nom, grau) VALUES ('I', 'Tecnologies de la informació', 1);
 EOSQL
